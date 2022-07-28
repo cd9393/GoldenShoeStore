@@ -1,0 +1,21 @@
+.copyright-footer {
+  background-color: #f6f6f6;
+}
+
+.copyright-text {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.accordions-container {
+  display: flex;
+}
+
+@media (max-width: 700px) {
+  .accordions-container {
+    display: flex;
+    flex-direction: column;
+  }
+}

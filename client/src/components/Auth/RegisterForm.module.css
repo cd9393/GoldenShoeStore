@@ -1,0 +1,117 @@
+.auth {
+  margin: 3rem auto;
+  width: 100%;
+  max-width: 480px;
+  background-color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.auth h1 {
+  text-align: left;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+#first-name-container {
+  width: 100%;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+.fullWidth {
+  width: 100%;
+}
+.control label {
+  display: block;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.control input {
+  font: inherit;
+  padding: 8px 40px 8px 12px;
+  height: 40px;
+  width: 100%;
+  font-size: 14px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border-radius: 2px;
+  background-color: #fff;
+  border: 1px solid #cbcbcb;
+  outline: none;
+}
+
+.control input:focus {
+  border: 1px solid #000;
+}
+
+.control input:focus-visible {
+  border: 1px solid #000;
+}
+
+.control input:hover {
+  border: 1px solid #000;
+}
+
+.control select {
+  font: inherit;
+  padding: 8px 40px 8px 12px;
+  height: 40px;
+  flex: 25%;
+  font-size: 14px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  border-radius: 2px;
+  background-color: #fff;
+  border: 1px solid #cbcbcb;
+  outline: none;
+}
+
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actions button {
+  cursor: pointer;
+  width: 100%;
+  font: inherit;
+  text-decoration: none;
+  color: white;
+  background-color: #000;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
+}
+
+.actions button:hover {
+  background-color: #873abb;
+  border-color: #873abb;
+}
+
+.actions .toggle {
+  margin-top: 1rem;
+  background-color: transparent;
+  text-decoration: none;
+  color: #000;
+  border: none;
+  padding: 0.15rem 1.5rem;
+}
+
+.actions .toggle:hover {
+  background-color: transparent;
+  color: #ae82cc;
+}
