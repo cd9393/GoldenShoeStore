@@ -6,6 +6,7 @@ require("dotenv").config();
 const auth = require("./routes/Auth");
 const orders = require("./routes/Orders");
 
+const errorHandler = require("./middleware/errorHandler");
 const port = process.env.PORT || 3000;
 
 //middleware
@@ -17,6 +18,8 @@ app.use(express.json());
 
 app.use("/auth", auth);
 app.use("/orders", orders);
+
+app.use(errorHandler);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

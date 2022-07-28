@@ -1,4 +1,6 @@
+const bcrypt = require("bcrypt");
 const auth = require("../database/auth");
+const jwtGenerator = require("../utils/jwtGenerator");
 
 const registerUser = async (body) => {
   const { password } = body;
@@ -14,8 +16,8 @@ const registerUser = async (body) => {
   newUser.password = bcryptPassword;
 
   try {
-    const newUser = await auth.registerUser(newUser);
-    const token = jwtGenerator(newUser.user_id);
+    const createdUser = await auth.registerUser(newUser);
+    const token = jwtGenerator(createdUser.user_id);
     return token;
   } catch (error) {
     throw error;
