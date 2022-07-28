@@ -9,7 +9,14 @@ const registerUser = async (req, res, next) => {
   }
 };
 
-const login = async (req, res) => {};
+const login = async (req, res, next) => {
+  try {
+    const token = await authService.loginUser(req.body);
+    res.json({ token });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   registerUser,

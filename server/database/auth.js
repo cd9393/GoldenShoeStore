@@ -4,16 +4,6 @@ const registerUser = async (newUser) => {
   //Destructure req.body
   const { firstName, lastName, email, password } = newUser;
 
-  //check if user exists (if user exists throw error)
-  const user = await db.query("SELECT * FROM users where user_email = $1", [
-    email,
-  ]);
-
-  if (user.rows.length > 0) {
-    throw { status: 409, message: "Email already exists" };
-  }
-
-  // enter the user inside the database
   try {
     const newUser = await db.query(
       "INSERT INTO users (first_name, last_name, user_email, user_password) VALUES ($1, $2, $3, $4) RETURNING *",
@@ -25,4 +15,16 @@ const registerUser = async (newUser) => {
   }
 };
 
-module.exports = { registerUser };
+const getUser = async (email) => {
+  try {
+    const user = await db.query("SELECT * FROM users WHERE user_email = $1", [
+      email,
+    ]);
+    return user;
+  } catch (error) {
+    console.error(error);
+    throw { status: 500, message: error?.message || error };
+  }
+};
+
+module.exports = { registerUser, getUser };
