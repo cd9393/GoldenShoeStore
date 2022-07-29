@@ -5,7 +5,9 @@ import NewsLetterSignup from "./NewsLetterSignUp/NewsLetterSignup";
 const Footer = () => {
   return (
     <footer>
-      <NewsLetterSignup />
+      <div className="newletter-container">
+        <NewsLetterSignup />
+      </div>
       <div className="accordions-container">
         <LinkAccordion
           header="Help & Info"

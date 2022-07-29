@@ -90,7 +90,6 @@ const updateOneOrder = async (req, res) => {
 
 const deleteOneOrder = async (req, res) => {
   const {
-    body,
     params: { orderId },
   } = req;
   if (!orderId) {

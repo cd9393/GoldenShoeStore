@@ -18,6 +18,9 @@ const registerUser = async (body) => {
   if (userExists) {
     throw { status: 409, message: "Email already exists" };
   }
+
+  //can check validitiy of password, i.e longer than 8 characters and includes upercase/lowercase/number/characters
+
   // Bcrypt the user password
   const saltRound = 11;
   const salt = await bcrypt.genSalt(saltRound);

@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* overflow-x: hidden; */
+  background-color: #faf9f8;
 }
 
 code {
@@ -13,8 +14,18 @@ code {
     monospace;
 }
 
+footer {
+  background-color: #e4e4e4;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.main-layout {
+  max-width: 1008px;
+  margin-left: auto;
+  margin-right: auto;
 }

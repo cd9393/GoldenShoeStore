@@ -18,6 +18,7 @@ const NewsLetterSignup = () => {
   };
   return (
     <div className="newsletter-container">
+      <h3>Join our mailing list</h3>
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore fugit
         adipisci velit ex dignissimos a deserunt temporibus quisquam totam ipsa!

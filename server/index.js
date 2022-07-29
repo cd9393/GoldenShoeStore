@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const auth = require("./routes/Auth");
 const orders = require("./routes/Orders");
+const orderItems = require("./routes/OrderItems");
 
 const errorHandler = require("./middleware/errorHandler");
 const port = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use("/auth", auth);
 app.use("/orders", orders);
+app.use("/order-items", orderItems);
 
 app.use(errorHandler);
 

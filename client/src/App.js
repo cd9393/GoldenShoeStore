@@ -13,15 +13,17 @@ function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route exact path="/" element={<LandingPage />} />
-        <Route path="/brands" element={<Brands />} />
-        <Route path="/products" element={<h1>Products</h1>} />
-        <Route path="/products/:productCode" element={<ProductPage />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/account/login" element={<AuthPage />} />
-        <Route path="/account/register" element={<RegisterAccount />} />
-      </Routes>
+      <div className="main-layout">
+        <Routes>
+          <Route exact path="/" element={<LandingPage />} />
+          <Route path="/brands" element={<Brands />} />
+          <Route path="/products" element={<h1>Products</h1>} />
+          <Route path="/products/:productCode" element={<ProductPage />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/account/login" element={<AuthPage />} />
+          <Route path="/account/register" element={<RegisterAccount />} />
+        </Routes>
+      </div>
       <Footer />
     </>
   );
