@@ -31,3 +31,43 @@ export async function login(user) {
 
   return jsonData;
 }
+
+export async function verifyToken(token) {
+  const response = await fetch(`${API_DOMAIN}/auth/is-verify`, {
+    method: "GET",
+    body: {},
+    headers: { "Content-Type": "application/json", token: token },
+  });
+
+  const jsonData = await response.json();
+
+  if (!response.ok) {
+    throw new Error(jsonData.data.error || "Could not login account");
+  }
+
+  return jsonData;
+}
+
+export async function joinNewsLetter(email) {
+  const body = {
+    email,
+    consent: "Y",
+    consentHow: "Online Newsletter",
+  };
+
+  const response = await fetch(`${API_DOMAIN}/mail-list`, {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const jsonData = await response.json();
+
+  if (!response.ok) {
+    throw new Error(jsonData.data.error || "Could not login account");
+  }
+
+  return jsonData;
+}
