@@ -1,4 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import useHttp from "../../hooks/use-http";
+import { registerAccount } from "../../util/api";
 
 import classes from "./RegisterForm.module.css";
 
@@ -8,6 +10,14 @@ const RegisterForm = () => {
   const titleRef = useRef();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
+
+  const { sendRequest, status, error, data } = useHttp(registerAccount);
+
+  useEffect(() => {
+    console.log("status", status);
+    console.log("error", error);
+    console.log("data", data);
+  }, [error, data, status]);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -28,19 +38,7 @@ const RegisterForm = () => {
       lastName,
     };
 
-    console.log(body);
-
-    const response = await fetch("http://localhost:4000/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-
-    const json = await response.json();
-
-    console.log(json);
+    sendRequest(body);
   };
   return (
     <section className={classes.auth}>
@@ -79,6 +77,7 @@ const RegisterForm = () => {
           <input type="text" id="last-name" required ref={lastNameRef} />
         </div>
         <div className={classes.actions}>
+          {error && <span className={classes.errorMessage}>{error}</span>}
           <button>Create Account</button>
           <a href="/account/login" className={classes.toggle}>
             Login with existing account
