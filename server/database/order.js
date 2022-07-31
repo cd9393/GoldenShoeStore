@@ -61,10 +61,23 @@ const deleteOneOrder = async (orderId) => {
   }
 };
 
+const getOrdersForAccount = async (user) => {
+  try {
+    const orders = await db.query("SELECT * FROM orders where user_id = $1", [
+      user,
+    ]);
+    return orders.rows;
+  } catch (error) {
+    console.error(error.message);
+    throw { status: 500, message: error?.message || error };
+  }
+};
+
 module.exports = {
   getAllOrders,
   createNewOrder,
   getOneOrder,
   deleteOneOrder,
   updateOneOrder,
+  getOrdersForAccount,
 };

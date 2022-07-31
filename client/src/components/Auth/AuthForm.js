@@ -1,5 +1,5 @@
 import { useRef, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
 import AuthContext from "../../store/auth-context";
 import { login } from "../../util/api";
@@ -19,7 +19,7 @@ const AuthForm = () => {
       authCtx.login(data.token);
       navigate("/account");
     }
-  }, [error, data, status, authCtx]);
+  }, [error, data, status, authCtx, navigate]);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -56,9 +56,9 @@ const AuthForm = () => {
         <div className={classes.actions}>
           {error && <span className={classes.errorMessage}>{error}</span>}
           <button>Login</button>
-          <a href="/account/register" className={classes.toggle}>
+          <Link to="/account/register" className={classes.toggle}>
             Create new account
-          </a>
+          </Link>
         </div>
       </form>
     </section>

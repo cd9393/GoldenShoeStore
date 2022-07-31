@@ -1,21 +1,25 @@
-import { useState } from "react";
-
+import { useRef, useState } from "react";
+import useHttp from "../../../../hooks/use-http";
 import "./NewsLetterSignup.css";
 import React from "react";
+import { joinNewsLetter } from "../../../../util/api";
+import { validEmail } from "../../../../util/textValidation";
 
 const NewsLetterSignup = () => {
-  const [email, setEmail] = useState("");
-
-  const onTextChange = (event) => {
-    setEmail(event.target.value);
-    console.log(event.target.value);
-  };
+  const emailInputRef = useRef();
+  const [submitError, setSubmitError] = useState("");
+  const { status, error, sendRequest } = useHttp(joinNewsLetter);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-
-    console.log("posted email to mailing list");
+    const email = emailInputRef.current.value;
+    if (!validEmail(email)) {
+      setSubmitError("Please enter a valid email address");
+      return;
+    }
+    sendRequest(email);
   };
+
   return (
     <div className="newsletter-container">
       <h3>Join our mailing list</h3>
@@ -30,10 +34,11 @@ const NewsLetterSignup = () => {
             type="email"
             className="email-input"
             placeholder="Email address"
-            onChange={onTextChange}
+            ref={emailInputRef}
           />
+          {submitError && <span className="error-message">{submitError}</span>}
           <button className="submit-button" type="submit">
-            Submit
+            {status === "completed" && !error ? "Success" : "Submit"}
           </button>
         </form>
       </div>

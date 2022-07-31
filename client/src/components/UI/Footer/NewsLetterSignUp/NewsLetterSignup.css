@@ -52,6 +52,7 @@
   font-weight: 400;
   border: none;
   align-items: center;
+  cursor: pointer;
 }
 
 .error {

@@ -55,7 +55,7 @@ export async function joinNewsLetter(email) {
     consentHow: "Online Newsletter",
   };
 
-  const response = await fetch(`${API_DOMAIN}/mail-list`, {
+  const response = await fetch(`${API_DOMAIN}/mailing-contact`, {
     method: "POST",
     body: JSON.stringify(body),
     headers: {
@@ -66,7 +66,25 @@ export async function joinNewsLetter(email) {
   const jsonData = await response.json();
 
   if (!response.ok) {
-    throw new Error(jsonData.data.error || "Could not login account");
+    throw new Error(jsonData.data.error || "Could not add to mailing list");
+  }
+
+  return jsonData;
+}
+
+export async function getOrders() {
+  const response = await fetch(`${API_DOMAIN}/account/orders`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+  });
+
+  const jsonData = response.json();
+
+  if (!response.ok) {
+    throw new Error(jsonData.data.error || "Could not retireve orders");
   }
 
   return jsonData;

@@ -9,9 +9,9 @@ const getAllContacts = async () => {
   }
 };
 
-const getOneContact = async (email) => {
+const getOneContact = async (contactId) => {
   try {
-    const contact = await contacts.getOneContact(email);
+    const contact = await contacts.getOneContact(contactId);
     return contact;
   } catch (error) {
     throw error;
@@ -27,18 +27,18 @@ const createNewContact = async (newContact) => {
   }
 };
 
-const updateOneContact = async (changes) => {
+const updateOneContact = async (contactId, changes) => {
   try {
-    const updatedContact = await contacts.updateOneContact(changes);
+    const updatedContact = await contacts.updateOneContact(contactId, changes);
     return updatedContact;
   } catch (error) {
     throw error;
   }
 };
 
-const deleteOneContact = async (email) => {
+const deleteOneContact = async (contactId) => {
   try {
-    await contacts.deleteOneContact(email);
+    await contacts.deleteOneContact(contactId);
   } catch (error) {
     throw error;
   }

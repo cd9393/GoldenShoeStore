@@ -109,10 +109,29 @@ const deleteOneOrder = async (req, res) => {
   }
 };
 
+const getOrdersForAccount = async (req, res) => {
+  const { user } = req;
+
+  if (!user) {
+    throw { status: 403, message: "Not Authorized" };
+  }
+
+  try {
+    const orders = await orderService.getOrdersForAccount(user);
+    res.send({
+      status: "OK",
+      data: orders,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllOrders,
   getOneOrder,
   createNewOrder,
   updateOneOrder,
   deleteOneOrder,
+  getOrdersForAccount,
 };

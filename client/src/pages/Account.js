@@ -1,11 +1,11 @@
 import {
-  faBox,
   faTruckMoving,
   faAddressCard,
   faHouse,
   faCreditCard,
   faCircleInfo,
   faUpRightFromSquare,
+  faReceipt,
 } from "@fortawesome/free-solid-svg-icons";
 import AccountHeader from "../components/Account/AccountHeader";
 import AccountLinks from "../components/Account/AccountLinks";
@@ -13,9 +13,9 @@ import Logout from "../components/Account/Logout";
 
 const UserLinks = [
   {
-    to: "/account/order",
-    header: "My order",
-    icon: faBox,
+    to: "/account/orders",
+    header: "My orders",
+    icon: faReceipt,
   },
   {
     to: "/account/returns",
@@ -58,6 +58,7 @@ const supportLinks = [
 ];
 
 const Account = () => {
+  // fetch user details to gather first and second name for welcome message
   return (
     <section>
       <AccountHeader name="Craig Dunlop" />

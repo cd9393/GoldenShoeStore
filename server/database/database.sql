@@ -32,6 +32,7 @@ CREATE TABLE order_items(
 INSERT INTO order_items (order_id, product_name,product_size, product_price, product_quantity) VALUES (3, 'Nike Air Zoom','7', 269.99, 2);
 
 CREATE TABLE mailing_list(
+    contact_id SERIAL PRIMARY KEY,
     email varchar(250),
     consent varchar(1),
     consent_how varchar(250)

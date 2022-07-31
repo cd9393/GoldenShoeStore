@@ -4,12 +4,12 @@ const mailingContactController = require("../controllers/mailingContactControlle
 
 router.get("/", mailingContactController.getAllContacts);
 
-router.get("/:mailingContactID", mailingContactController.getOneContact);
+router.get("/:contactId", mailingContactController.getOneContact);
 
 router.post("/", mailingContactController.createNewContact);
 
-router.put("/:mailingContactID", mailingContactController.updateOneContact);
+router.put("/:contactId", mailingContactController.updateOneContact);
 
-router.delete("/:mailingContactID", mailingContactController.deleteOneContact);
+router.delete("/:contactId", mailingContactController.deleteOneContact);
 
 module.exports = router;

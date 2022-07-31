@@ -1,5 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
+import AuthContext from "../../store/auth-context";
 import { registerAccount } from "../../util/api";
 
 import classes from "./RegisterForm.module.css";
@@ -11,13 +13,17 @@ const RegisterForm = () => {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
 
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+
   const { sendRequest, status, error, data } = useHttp(registerAccount);
 
   useEffect(() => {
-    console.log("status", status);
-    console.log("error", error);
-    console.log("data", data);
-  }, [error, data, status]);
+    if (status === "completed" && !error) {
+      authCtx.login(data.token);
+      navigate("/account");
+    }
+  }, [error, data, status, navigate, authCtx]);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -79,9 +85,9 @@ const RegisterForm = () => {
         <div className={classes.actions}>
           {error && <span className={classes.errorMessage}>{error}</span>}
           <button>Create Account</button>
-          <a href="/account/login" className={classes.toggle}>
+          <Link to="/account/login" className={classes.toggle}>
             Login with existing account
-          </a>
+          </Link>
         </div>
       </form>
     </section>

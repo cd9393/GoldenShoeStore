@@ -12,16 +12,16 @@ const getAllContacts = async (req, res) => {
 };
 
 const getOneContact = async (req, res) => {
-  const { email } = req.params;
-  if (!email) {
+  const { contactId } = req.params;
+  if (!contactId) {
     return res.status(400).send({
       status: "FAILED",
-      data: { error: "Parameter ':email' can not be empty" },
+      data: { error: "Parameter ':contactId' can not be empty" },
     });
   }
 
   try {
-    const contact = await contactService.getOneContact(email);
+    const contact = await contactService.getOneContact(contactId);
     res.send({ status: "OK", data: contact });
   } catch (error) {
     res
@@ -44,6 +44,7 @@ const createNewContact = async (req, res) => {
 
   const newContact = {
     email,
+    consent: "Y",
     consentHow,
   };
 
@@ -58,28 +59,31 @@ const createNewContact = async (req, res) => {
 };
 
 const updateOneContact = async (req, res) => {
-  const { consent, consentHow } = req.body;
-  const { email } = req.params;
+  const { consent, consentHow, email } = req.body;
+  const { contactId } = req.params;
 
-  if (!email) {
+  if (!contactId) {
     return res.status(400).send({
       status: "FAILED",
       data: { error: "Parameter ':email' can not be empty" },
     });
   }
 
-  if (![consent, consentHow].every(Boolean)) {
+  if (![consent, consentHow, email].every(Boolean)) {
     return res.status(400).send({
       status: "FAILED",
       data: {
         error:
-          "One of the following keys is missing or empty: 'consent', 'consentHow'",
+          "One of the following keys is missing or empty: 'consent', 'consentHow', 'email",
       },
     });
   }
 
   try {
-    const updatedContact = await contactService.updateOneContact(req.body);
+    const updatedContact = await contactService.updateOneContact(
+      contactId,
+      req.body
+    );
     res.send({ status: "OK", data: updatedContact });
   } catch (error) {
     res
@@ -90,9 +94,9 @@ const updateOneContact = async (req, res) => {
 
 const deleteOneContact = async (req, res) => {
   const {
-    params: { email },
+    params: { contactId },
   } = req;
-  if (!email) {
+  if (!contactId) {
     return res.status(400).send({
       status: "FAILED",
       data: { error: "Parameter ':email' can not be empty" },
@@ -100,7 +104,7 @@ const deleteOneContact = async (req, res) => {
   }
 
   try {
-    await contactService.deleteOneContact(email);
+    await contactService.deleteOneContact(contactId);
     res.status(204).send({ status: "OK" });
   } catch (error) {
     res

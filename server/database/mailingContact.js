@@ -10,11 +10,11 @@ const getAllContacts = async () => {
   }
 };
 
-const getOneContact = async (email) => {
+const getOneContact = async (contactId) => {
   try {
     const contact = await db.query(
-      "SELECT * FROM mailing_list WHERE email = $1",
-      [email]
+      "SELECT * FROM mailing_list WHERE contact_id = $1",
+      [contactId]
     );
     return contact.rows[0];
   } catch (error) {
@@ -27,7 +27,7 @@ const createNewContact = async (newContact) => {
   const { email, consent, consentHow } = newContact;
   try {
     const newContact = await db.query(
-      "INSERT INTO mailing_list (email, consent, consentHow ) VALUES ($1, $2, $3) RETURNING *",
+      "INSERT INTO mailing_list (email, consent, consent_how ) VALUES ($1, $2, $3) RETURNING *",
       [email, consent, consentHow]
     );
     return newContact.rows[0];
@@ -37,13 +37,13 @@ const createNewContact = async (newContact) => {
   }
 };
 
-const updateOneContact = async (contactFields) => {
+const updateOneContact = async (contactId, contactFields) => {
   try {
     const { email, consent, consentHow } = contactFields;
 
     const updatedContact = await db.query(
-      "UPDATE mailing_list SET email = $1, consent = $2, consentHow = $3 WHERE email = $4 RETURNING *",
-      [email, consent, consentHow, email]
+      "UPDATE mailing_list SET email = $1, consent = $2, consent_how = $3 WHERE contact_id = $4 RETURNING *",
+      [email, consent, consentHow, contactId]
     );
     return updatedContact.rows[0];
   } catch (error) {
@@ -52,9 +52,11 @@ const updateOneContact = async (contactFields) => {
   }
 };
 
-const deleteOneContact = async (email) => {
+const deleteOneContact = async (contactId) => {
   try {
-    await db.query("DELETE FROM mailing_list where email = $1", [email]);
+    await db.query("DELETE FROM mailing_list where contact_id = $1", [
+      contactId,
+    ]);
   } catch (error) {
     console.error(error.message);
     throw { status: 500, message: error?.message || error };

@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+
+import AuthContext from "./store/auth-context";
 import LandingPage from "./pages/LandingPage";
 import "./App.css";
 import Brands from "./pages/Brands";
@@ -8,8 +11,8 @@ import Navbar from "./components/UI/Header/Navbar";
 import Footer from "./components/UI/Footer/Footer";
 import AuthPage from "./pages/AuthPage";
 import RegisterAccount from "./pages/RegisterAccount";
-import { useContext } from "react";
-import AuthContext from "./store/auth-context";
+import PrivateRoutes from "./components/PrivateRoutes";
+import Orders from "./pages/Orders";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -23,16 +26,10 @@ function App() {
           <Route path="/brands" element={<Brands />} />
           <Route path="/products" element={<h1>Products</h1>} />
           <Route path="/products/:productCode" element={<ProductPage />} />
-          <Route
-            path="/account"
-            element={
-              authCtx.isLoggedIn ? (
-                <Account />
-              ) : (
-                <Navigate to="/account/login" />
-              )
-            }
-          />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/account" element={<Account />} />
+            <Route path="/account/orders" element={<Orders />} />
+          </Route>
           <Route
             path="/account/login"
             element={

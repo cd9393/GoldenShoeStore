@@ -24,6 +24,10 @@ a {
   line-height: 2.4rem;
 }
 
+.listItem:hover {
+  text-decoration: underline;
+}
+
 .linksList:last-child {
   margin-bottom: 10px;
   border: none;

@@ -30,3 +30,17 @@ footer {
   margin-left: auto;
   margin-right: auto;
 }
+
+.error-message {
+  color: red;
+  padding-bottom: 10px;
+}
+
+@media (min-width: 700px) {
+  footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
+}
