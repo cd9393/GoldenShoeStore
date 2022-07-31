@@ -16,7 +16,6 @@ import Orders from "./pages/Orders";
 
 function App() {
   const authCtx = useContext(AuthContext);
-  console.log(authCtx.isLoggedIn);
   return (
     <>
       <Navbar />

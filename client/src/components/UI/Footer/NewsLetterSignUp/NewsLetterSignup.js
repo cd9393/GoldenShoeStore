@@ -30,7 +30,7 @@ const NewsLetterSignup = () => {
       <div>
         <form className="form-container" onSubmit={handleFormSubmit}>
           <input
-            id="email"
+            id="newsletter-email"
             type="email"
             className="email-input"
             placeholder="Email address"

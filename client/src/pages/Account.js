@@ -59,6 +59,7 @@ const supportLinks = [
 
 const Account = () => {
   // fetch user details to gather first and second name for welcome message
+  // check if token is still valid.
   return (
     <section>
       <AccountHeader name="Craig Dunlop" />

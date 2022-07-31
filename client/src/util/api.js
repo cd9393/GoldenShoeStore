@@ -73,7 +73,7 @@ export async function joinNewsLetter(email) {
 }
 
 export async function getOrders() {
-  const response = await fetch(`${API_DOMAIN}/account/orders`, {
+  const response = await fetch(`${API_DOMAIN}/orders/my-orders`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -81,11 +81,10 @@ export async function getOrders() {
     },
   });
 
-  const jsonData = response.json();
+  const jsonData = await response.json();
 
   if (!response.ok) {
     throw new Error(jsonData.data.error || "Could not retireve orders");
   }
-
-  return jsonData;
+  return jsonData.data;
 }
