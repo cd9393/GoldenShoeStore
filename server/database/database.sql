@@ -18,12 +18,28 @@ CREATE TABLE orders(
     last_updated timestamp
 );
 
-INSERT INTO orders (user_id, status, created_at, last_updated) VALUES ('0f48eb94-c506-4faf-80ba-9f759bccec8e', 'Dispatched', '2022-07-26T21:30:00.000', '2022-07-27T11:00:00.000');
+INSERT INTO orders (user_id, status, created_at, last_updated) VALUES ('dc2be86c-27f2-434e-a694-f342a8f78f0f', 'Processing', '2022-07-31T14:30:00.000', '2022-07-31T11:00:00.000');
+INSERT INTO orders (user_id, status, created_at, last_updated) VALUES ('dc2be86c-27f2-434e-a694-f342a8f78f0f', 'Out For Delivery', '2022-07-28T14:30:00.000', '2022-07-31T11:00:00.000');
+INSERT INTO orders (user_id, status, created_at, last_updated) VALUES ('dc2be86c-27f2-434e-a694-f342a8f78f0f', 'Delivered', '2022-07-26T14:30:00.000', '2022-07-28T11:00:00.000');
+INSERT INTO orders (user_id, status, created_at, last_updated) VALUES ('dc2be86c-27f2-434e-a694-f342a8f78f0f', 'Delivered', '2022-07-23T11:30:00.000', '2022-07-28T11:00:00.000');
+INSERT INTO orders (user_id, status, created_at, last_updated) VALUES ('dc2be86c-27f2-434e-a694-f342a8f78f0f', 'Dispatched', '2022-07-26T14:30:00.000', '2022-07-28T11:00:00.000');
 
 CREATE TABLE order_items(
     order_item_id SERIAL PRIMARY KEY,
     order_id int ,
     product_name varchar(250),
+    product_size varchar(10),
     product_price decimal(10,2),
-    product_quantity int,
+    product_quantity int
+);
+
+INSERT INTO order_items (order_id, product_name,product_size, product_price, product_quantity) VALUES (4, 'Nike Air Zoom','7', 269.99, 2);
+INSERT INTO order_items (order_id, product_name,product_size, product_price, product_quantity) VALUES (4, 'Adidas Gazelle','8', 199.99, 1);
+INSERT INTO order_items (order_id, product_name,product_size, product_price, product_quantity) VALUES (4, 'Crepe Protect','No Size', 10.99, 1);
+
+CREATE TABLE mailing_list(
+    contact_id SERIAL PRIMARY KEY,
+    email varchar(250),
+    consent varchar(1),
+    consent_how varchar(250)
 );

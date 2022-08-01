@@ -1,0 +1,49 @@
+.summaryContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  margin: 10px 0px;
+  padding: 10px 15px;
+}
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+.trackLink {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 0.4px solid #666;
+}
+
+.summaryHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
+.img {
+  height: 100px;
+  width: 100px;
+  background-color: #666;
+  padding-right: 10px;
+  margin: 10px 0px;
+}
+
+.itemDetails {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+}
+
+.rowTitle {
+  font-weight: 500;
+}
+
+.rowDetail {
+  font-weight: normal;
+}

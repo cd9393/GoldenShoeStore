@@ -50,10 +50,19 @@ const deleteOneOrder = async (orderId) => {
   }
 };
 
+const getOrdersForAccount = async (user) => {
+  try {
+    return await orders.getOrdersForAccount(user);
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllOrders,
   getOneOrder,
   createNewOrder,
   updateOneOrder,
   deleteOneOrder,
+  getOrdersForAccount,
 };

@@ -1,5 +1,5 @@
 .copyright-footer {
-  background-color: #f6f6f6;
+  background-color: #e4e4e4;
 }
 
 .copyright-text {
@@ -11,6 +11,12 @@
 
 .accordions-container {
   display: flex;
+}
+
+.newsletter-container {
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 700px) {

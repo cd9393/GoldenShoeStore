@@ -1,0 +1,25 @@
+.descriptionContainer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  margin: 0px 15px;
+  border-bottom: 0.4px solid #656565;
+  background-color: inherit;
+  font-size: 1.2rem;
+  letter-spacing: 0.05rem;
+  line-height: 2.4rem;
+}
+
+.btn {
+  all: unset;
+  width: 100%;
+  cursor: pointer;
+  background-color: #fff;
+  margin-bottom: 50px;
+}
+
+.btn:hover {
+  text-decoration: underline;
+}

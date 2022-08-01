@@ -1,0 +1,9 @@
+.descriptionContainer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  margin: 0px 15px;
+  border-bottom: 0.4px solid #656565;
+}

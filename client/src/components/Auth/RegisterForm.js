@@ -1,4 +1,8 @@
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useHttp from "../../hooks/use-http";
+import AuthContext from "../../store/auth-context";
+import { registerAccount } from "../../util/api";
 
 import classes from "./RegisterForm.module.css";
 
@@ -8,6 +12,18 @@ const RegisterForm = () => {
   const titleRef = useRef();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
+
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
+
+  const { sendRequest, status, error, data } = useHttp(registerAccount);
+
+  useEffect(() => {
+    if (status === "completed" && !error) {
+      authCtx.login(data.token);
+      navigate("/account");
+    }
+  }, [error, data, status, navigate, authCtx]);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -28,19 +44,7 @@ const RegisterForm = () => {
       lastName,
     };
 
-    console.log(body);
-
-    const response = await fetch("http://localhost:4000/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-
-    const json = await response.json();
-
-    console.log(json);
+    sendRequest(body);
   };
   return (
     <section className={classes.auth}>
@@ -79,10 +83,11 @@ const RegisterForm = () => {
           <input type="text" id="last-name" required ref={lastNameRef} />
         </div>
         <div className={classes.actions}>
+          {error && <span className={classes.errorMessage}>{error}</span>}
           <button>Create Account</button>
-          <a href="/account/login" className={classes.toggle}>
+          <Link to="/account/login" className={classes.toggle}>
             Login with existing account
-          </a>
+          </Link>
         </div>
       </form>
     </section>

@@ -1,12 +1,27 @@
-import { useRef, useState } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import useHttp from "../../hooks/use-http";
+import AuthContext from "../../store/auth-context";
+import { login } from "../../util/api";
 
 import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+  const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
 
-  const submitHandler = (event) => {
+  const { sendRequest, status, error, data } = useHttp(login);
+
+  useEffect(() => {
+    if (status === "completed" && !error) {
+      authCtx.login(data.token);
+      navigate("/account");
+    }
+  }, [error, data, status, authCtx, navigate]);
+
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
@@ -14,7 +29,12 @@ const AuthForm = () => {
 
     //add validation
 
-    //Post credentials and check user exists
+    const body = {
+      email: enteredEmail,
+      password: enteredPassword,
+    };
+
+    sendRequest(body);
   };
   return (
     <section className={classes.auth}>
@@ -34,10 +54,11 @@ const AuthForm = () => {
           />
         </div>
         <div className={classes.actions}>
+          {error && <span className={classes.errorMessage}>{error}</span>}
           <button>Login</button>
-          <a href="/account/register" className={classes.toggle}>
+          <Link to="/account/register" className={classes.toggle}>
             Create new account
-          </a>
+          </Link>
         </div>
       </form>
     </section>

@@ -76,7 +76,9 @@ const Navbar = () => {
               </li>
             </ul>
           )}
-          <h2>Golden Shoes</h2>
+          <Link className="link" to="/">
+            <h2>Golden Shoes</h2>
+          </Link>
           <div className="icon-container">
             <Link className="link" to="/account">
               <FontAwesomeIcon className="menu-icon" icon={faUser} />

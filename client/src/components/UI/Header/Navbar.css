@@ -46,13 +46,16 @@
   justify-content: flex-end;
   align-items: center;
 }
+.logoutButton {
+  display: none;
+}
 
 @media (max-width: 700px) {
   .navigation-list {
     position: fixed;
     z-index: 1000;
     inset: 0 0 0 10%;
-    background: steelblue;
+    background: #fff;
     flex-direction: column;
     padding: 24px 24px;
     /* transition: translateX(100%) 1s ease-in-out; */
