@@ -7,6 +7,12 @@ router.get("/", ordersController.getAllOrders);
 
 router.get("/my-orders", authorization, ordersController.getOrdersForAccount);
 
+router.get(
+  "/my-orders/:orderId",
+  authorization,
+  ordersController.getOrderDetailsForAccount
+);
+
 router.get("/:orderId", ordersController.getOneOrder);
 
 router.post("/", ordersController.createNewOrder);

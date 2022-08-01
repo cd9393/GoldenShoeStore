@@ -13,6 +13,8 @@ import AuthPage from "./pages/AuthPage";
 import RegisterAccount from "./pages/RegisterAccount";
 import PrivateRoutes from "./components/PrivateRoutes";
 import Orders from "./pages/Orders";
+import OrderDetails from "./pages/OrderDetails";
+import CreateReturn from "./pages/CreateReturn";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -28,6 +30,11 @@ function App() {
           <Route element={<PrivateRoutes />}>
             <Route path="/account" element={<Account />} />
             <Route path="/account/orders" element={<Orders />} />
+            <Route path="/account/orders/:orderId" element={<OrderDetails />} />
+            <Route
+              path="/account/orders/:orderId/create-return"
+              element={<CreateReturn />}
+            />
           </Route>
           <Route
             path="/account/login"

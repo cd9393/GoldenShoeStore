@@ -88,3 +88,20 @@ export async function getOrders() {
   }
   return jsonData.data;
 }
+
+export async function getOrderDetails(orderId) {
+  const response = await fetch(`${API_DOMAIN}/orders/my-orders/${orderId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      token: localStorage.getItem("token"),
+    },
+  });
+
+  const jsonData = await response.json();
+
+  if (!response.ok) {
+    throw new Error(jsonData.data.error || "Could not retireve orders");
+  }
+  return jsonData.data;
+}

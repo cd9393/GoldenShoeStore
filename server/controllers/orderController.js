@@ -1,3 +1,4 @@
+const orderItemService = require("../services/orderItemService");
 const orderService = require("../services/orderService");
 
 const getAllOrders = async (req, res) => {
@@ -127,6 +128,35 @@ const getOrdersForAccount = async (req, res) => {
   }
 };
 
+const getOrderDetailsForAccount = async (req, res) => {
+  const { user } = req;
+  const { orderId } = req.params;
+
+  if (!user) {
+    throw { status: 403, message: "Not Authorized" };
+  }
+
+  if (!orderId) {
+    return res.status(400).send({
+      status: "FAILED",
+      data: { error: "Parameter ':orderId' can not be empty" },
+    });
+  }
+
+  try {
+    const order = await orderService.getOneOrder(orderId);
+    const orderItems = await orderItemService.getOrderItemsFromOrder(orderId);
+
+    // need to validate order id actually exists
+    res.send({
+      status: "OK",
+      data: { order, orderItems: orderItems },
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllOrders,
   getOneOrder,
@@ -134,4 +164,5 @@ module.exports = {
   updateOneOrder,
   deleteOneOrder,
   getOrdersForAccount,
+  getOrderDetailsForAccount,
 };

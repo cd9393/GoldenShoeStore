@@ -63,9 +63,10 @@ const deleteOneOrder = async (orderId) => {
 
 const getOrdersForAccount = async (user) => {
   try {
-    const orders = await db.query("SELECT * FROM orders where user_id = $1", [
-      user,
-    ]);
+    const orders = await db.query(
+      "SELECT * FROM orders where user_id = $1 order by created_at desc",
+      [user]
+    );
     return orders.rows;
   } catch (error) {
     console.error(error.message);

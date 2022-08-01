@@ -1,0 +1,18 @@
+.headerSection {
+  background-color: #fff;
+}
+
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 15px;
+  padding: 10px 0px;
+  border-top: 0.4px solid #656565;
+  background-color: #fff;
+}
+
+.returnLink {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 0.4px solid #666;
+}

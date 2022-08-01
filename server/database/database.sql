@@ -33,7 +33,9 @@ CREATE TABLE order_items(
     product_quantity int
 );
 
-INSERT INTO order_items (order_id, product_name,product_size, product_price, product_quantity) VALUES (3, 'Nike Air Zoom','7', 269.99, 2);
+INSERT INTO order_items (order_id, product_name,product_size, product_price, product_quantity) VALUES (4, 'Nike Air Zoom','7', 269.99, 2);
+INSERT INTO order_items (order_id, product_name,product_size, product_price, product_quantity) VALUES (4, 'Adidas Gazelle','8', 199.99, 1);
+INSERT INTO order_items (order_id, product_name,product_size, product_price, product_quantity) VALUES (4, 'Crepe Protect','No Size', 10.99, 1);
 
 CREATE TABLE mailing_list(
     contact_id SERIAL PRIMARY KEY,
@@ -41,5 +43,3 @@ CREATE TABLE mailing_list(
     consent varchar(1),
     consent_how varchar(250)
 );
-
- dc2be86c-27f2-434e-a694-f342a8f78f0f

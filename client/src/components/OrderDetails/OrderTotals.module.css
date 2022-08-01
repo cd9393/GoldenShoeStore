@@ -1,0 +1,27 @@
+.header {
+  padding: 5px 15px;
+}
+
+.totalsContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  background-color: #fff;
+  margin: 10px 0px;
+}
+
+.flexRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0px;
+}
+
+@media (min-width: 1008px) {
+  .flexRow {
+    justify-content: flex-start;
+  }
+
+  .rowDetail {
+    padding-left: 50px;
+  }
+}

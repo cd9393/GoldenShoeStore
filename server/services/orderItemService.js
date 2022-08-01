@@ -47,10 +47,19 @@ const deleteOneOrderItem = async (orderItemId) => {
   }
 };
 
+const getOrderItemsFromOrder = async (orderId) => {
+  try {
+    return await orderItems.getOrderItemsFromOrder(orderId);
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllOrderItems,
   getOneOrderItem,
   createNewOrderItem,
   updateOneOrderItem,
   deleteOneOrderItem,
+  getOrderItemsFromOrder,
 };

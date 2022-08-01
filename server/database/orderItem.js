@@ -82,10 +82,24 @@ const deleteOneOrderItem = async (orderItemId) => {
   }
 };
 
+const getOrderItemsFromOrder = async (orderId) => {
+  try {
+    const orderItems = await db.query(
+      "SELECT * FROM order_items where order_id = $1",
+      [orderId]
+    );
+    return orderItems.rows;
+  } catch (error) {
+    console.error(error.message);
+    throw { status: 500, message: error?.message || error };
+  }
+};
+
 module.exports = {
   getAllOrderItems,
   createNewOrderItem,
   getOneOrderItem,
   deleteOneOrderItem,
   updateOneOrderItem,
+  getOrderItemsFromOrder,
 };

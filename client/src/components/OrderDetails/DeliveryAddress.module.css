@@ -1,0 +1,11 @@
+.deliveryContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  background-color: #fff;
+  margin: 10px 0px;
+}
+
+.header {
+  padding: 5px 15px;
+}

@@ -19,11 +19,11 @@ const OrderInfo = ({ order }) => {
           </span>
         </div>
       </Link>
-      <div className={classes.returns}>
-        <Link to={`/account/orders/${order_id}/create-return`}>
+      <Link to={`/account/orders/${order_id}/create-return`}>
+        <div className={classes.returns}>
           <span>Create Return</span>
-        </Link>
-      </div>
+        </div>
+      </Link>
     </div>
   );
 };
