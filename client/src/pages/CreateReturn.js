@@ -24,7 +24,11 @@ const CreateReturn = () => {
   return (
     <section>
       <h4> Create a return</h4>
-      {status === "pending" ? <LoadingSpinner /> : <ReturnsForm />}
+      {status === "pending" ? (
+        <LoadingSpinner />
+      ) : (
+        <ReturnsForm orderItems={orderItems} />
+      )}
     </section>
   );
 };

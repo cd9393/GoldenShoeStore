@@ -9,7 +9,7 @@ const OrderSummary = ({ order, orderItems }) => {
         <div className={classes.summaryHeaderContainer}>
           <h4>Order status : {status}!</h4>
         </div>
-        <span>Delivered on: 24 Jul 2022 </span>
+        {status === "delivered" && <span>Delivered on: 24 Jul 2022 </span>}
         <span>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo,
           natus!

@@ -1,0 +1,24 @@
+.itemContainer {
+  display: flex;
+  padding: 10px 15px;
+}
+
+.checkbox {
+  margin-right: 30px;
+}
+
+.btn {
+  cursor: pointer;
+  width: 100%;
+  font: inherit;
+  color: white;
+  background-color: #000;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
+}
+
+.btn:hover {
+  background-color: #873abb;
+  border-color: #873abb;
+}

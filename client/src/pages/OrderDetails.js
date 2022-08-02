@@ -48,7 +48,12 @@ const OrderDetails = () => {
             }}
           />
           <OrderSummary order={orderInfo} orderItems={orderItems} />
-          <OrderTotals />
+          <OrderTotals
+            subTotal={750.96}
+            delivery="FREE"
+            discount={0.0}
+            total={750.96}
+          />
         </>
       )}
     </div>
